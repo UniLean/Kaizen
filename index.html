@@ -30,9 +30,11 @@
         .frame-wrapper {
             position: relative;
             width: 95%;
-            height: 95%;
+            height: 98%;
             border-radius: 20px;
             overflow: hidden;
+            align-items: center;
+            justify-content: center;
         }
 
         .frame-wrapper::before {
@@ -50,6 +52,7 @@
             z-index: -1;
             animation: gradientShift 4s ease-in-out infinite;
             filter: blur(2px);
+            opacity: 0.5;
         }
 
         .frame-wrapper::after {
@@ -67,6 +70,7 @@
             z-index: -2;
             animation: glowPulse 5s ease-in-out infinite alternate;
             filter: blur(6px);
+            opacity: 0.8;
         }
 
         .glow-border {
@@ -84,6 +88,7 @@
             background-size: 500% 500%;
             animation: gradientMove 6s ease infinite;
             z-index: -1;
+            opacity: 0.8;
         }
 
         .inner-glow {
@@ -115,12 +120,13 @@
 
         iframe {
             position: relative;
-            width: calc(100% - 6px);
-            height: calc(100% - 6px);
+            width: 95%;
+            height: 95%;
             border: none;
             border-radius: 17px;
             z-index: 2;
-            margin: 3px;
+            margin: auto;
+            display: block;
         }
 
         .light-beam {
@@ -148,6 +154,20 @@
         .light-beam:nth-child(3) {
             left: 85%;
             animation-delay: 1.6s;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            font-weight: bold;
         }
 
         @keyframes gradientShift {
@@ -240,7 +260,12 @@
             <iframe 
                 src="https://script.google.com/macros/s/AKfycby9cfzxJP1_yEqQyN4derjtsWp7v4HWVFM723nMyW8O_2674iOvW9W7vFWmrZyJdsmZ-A/exec"
                 allowfullscreen>
+                <div class="loading-overlay">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Hwaseung Unipax Kaizen Form | Created by ME team</div>
+                </div>
             </iframe>
+            <div class="footer" style="color: #1f1f1f; font-size: 14px; font-family: Arial, sans-serif; text-align: center; z-index: 1000; text-shadow: 0 0 10px rgba(255,255,255,0.5); font-weight: bold;">Hwaseung Unipax Kaizen Form | Created by ME team</div>
         </div>
     </div>
 </body>
