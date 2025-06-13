@@ -38,31 +38,35 @@
         .frame-wrapper::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
             background: linear-gradient(45deg, 
                 #ff0000, #ff7f00, #ffff00, #00ff00, 
-                #0000ff, #8f00ff, #ff0000);
-            background-size: 300% 300%;
-            border-radius: 25px;
+                #0000ff, #8f00ff, #ff69b4, #ff0000);
+            background-size: 600% 600%;
+            border-radius: 28px;
             z-index: -1;
-            animation: gradientShift 3s ease-in-out infinite;
+            animation: gradientShift 4s ease-in-out infinite;
+            filter: blur(2px);
         }
 
         .frame-wrapper::after {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
             background: linear-gradient(45deg, 
-                rgba(255,255,255,0.3), transparent, rgba(255,255,255,0.3));
-            border-radius: 30px;
+                rgba(255,0,0,0.4), rgba(255,127,0,0.4), rgba(255,255,0,0.4), 
+                rgba(0,255,0,0.4), rgba(0,0,255,0.4), rgba(143,0,255,0.4));
+            background-size: 800% 800%;
+            border-radius: 35px;
             z-index: -2;
-            animation: glowPulse 2s ease-in-out infinite alternate;
+            animation: glowPulse 5s ease-in-out infinite alternate;
+            filter: blur(6px);
         }
 
         .glow-border {
@@ -73,10 +77,12 @@
             bottom: 0;
             border-radius: 20px;
             background: linear-gradient(45deg, 
-                #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, 
-                #ffeaa7, #dda0dd, #ff6b6b);
-            background-size: 400% 400%;
-            animation: gradientMove 4s ease infinite;
+                #ff1744, #e91e63, #9c27b0, #673ab7,
+                #3f51b5, #2196f3, #03a9f4, #00bcd4,
+                #009688, #4caf50, #8bc34a, #cddc39,
+                #ffeb3b, #ffc107, #ff9800, #ff5722, #ff1744);
+            background-size: 500% 500%;
+            animation: gradientMove 6s ease infinite;
             z-index: -1;
         }
 
@@ -89,9 +95,26 @@
             border-radius: 17px;
             background: #fff;
             box-shadow: 
-                inset 0 0 20px rgba(255,255,255,0.8),
-                0 0 30px rgba(255,255,255,0.4);
+                inset 0 0 25px rgba(255,255,255,0.9),
+                0 0 40px rgba(255,255,255,0.5),
+                0 0 60px rgba(255,255,255,0.2);
             z-index: 1;
+        }
+
+        .shimmer-overlay {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1), transparent, rgba(255,255,255,0.3), 
+                transparent, rgba(255,255,255,0.1));
+            background-size: 300% 300%;
+            animation: shimmer 3s ease-in-out infinite;
+            z-index: 3;
+            pointer-events: none;
         }
 
         iframe {
@@ -105,35 +128,43 @@
 
         .light-beam {
             position: absolute;
-            width: 2px;
+            width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, #fff, transparent);
-            animation: beamMove 2s linear infinite;
-            z-index: 3;
+            background: linear-gradient(to bottom, 
+                transparent, rgba(255,255,255,0.8), transparent);
+            animation: beamMove 2.5s linear infinite;
+            z-index: 4;
             pointer-events: none;
+            border-radius: 2px;
         }
 
         .light-beam:nth-child(1) {
-            left: 10%;
+            left: 15%;
             animation-delay: 0s;
         }
 
         .light-beam:nth-child(2) {
             left: 50%;
-            animation-delay: 0.5s;
+            animation-delay: 0.8s;
         }
 
         .light-beam:nth-child(3) {
-            left: 90%;
-            animation-delay: 1s;
+            left: 85%;
+            animation-delay: 1.6s;
         }
 
         @keyframes gradientShift {
             0%, 100% {
                 background-position: 0% 50%;
             }
+            25% {
+                background-position: 100% 0%;
+            }
             50% {
-                background-position: 100% 50%;
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
             }
         }
 
@@ -141,8 +172,17 @@
             0% {
                 background-position: 0% 50%;
             }
-            50% {
-                background-position: 100% 50%;
+            20% {
+                background-position: 100% 0%;
+            }
+            40% {
+                background-position: 100% 100%;
+            }
+            60% {
+                background-position: 0% 100%;
+            }
+            80% {
+                background-position: 0% 0%;
             }
             100% {
                 background-position: 0% 50%;
@@ -151,26 +191,42 @@
 
         @keyframes glowPulse {
             0% {
-                opacity: 0.5;
+                opacity: 0.3;
                 transform: scale(1);
             }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.03);
+            }
             100% {
-                opacity: 1;
-                transform: scale(1.02);
+                opacity: 0.5;
+                transform: scale(1.01);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+                opacity: 0.2;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 0.6;
             }
         }
 
         @keyframes beamMove {
             0% {
                 opacity: 0;
-                transform: translateX(-100px);
+                transform: translateX(-150px) skewX(-15deg);
             }
             50% {
                 opacity: 1;
+                transform: translateX(0px) skewX(-15deg);
             }
             100% {
                 opacity: 0;
-                transform: translateX(100px);
+                transform: translateX(150px) skewX(-15deg);
             }
         }
     </style>
@@ -180,6 +236,7 @@
         <div class="frame-wrapper">
             <div class="glow-border"></div>
             <div class="inner-glow"></div>
+            <div class="shimmer-overlay"></div>
             <div class="light-beam"></div>
             <div class="light-beam"></div>
             <div class="light-beam"></div>
